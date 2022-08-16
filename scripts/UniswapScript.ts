@@ -13,7 +13,8 @@ async function main() {
   const USDTAddress = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
   const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
   const UNIRouter = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
-  const amountOut = 2000;
+  const amountOut = 2e6;
+  const amountInMax = 3e6;
 
   const helpers = require("@nomicfoundation/hardhat-network-helpers");
   const USDTHolder = "0xf584f8728b874a6a5c7a8d4d387c9aae9172d621";
@@ -31,7 +32,7 @@ async function main() {
     UNIRouter,
     impersonatedSigner
   );
-  await USDT.approve(UNIRouter, amountOut);
+  await USDT.approve(UNIRouter, amountInMax);
     const usdtBal = await USDT.balanceOf(USDTHolder);
     const daiBal = await DAI.balanceOf(USDTHolder);
 
@@ -39,7 +40,7 @@ async function main() {
 
   await ROUTER.swapTokensForExactTokens(
     amountOut,
-    2000,
+    amountInMax,
     [USDTAddress, DAIAddress],
     USDTHolder,
     1660676406
