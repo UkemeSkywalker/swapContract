@@ -11,7 +11,7 @@ module.exports = {
       }
     },
     rinkeby: {
-      url: process.env.RINKEBY_RPC_URL,
+      url: process.env.MAINNET,
       accounts: [process.env.GANDALF_PRIVATE_KEY]
     },
     // ropsten: {
