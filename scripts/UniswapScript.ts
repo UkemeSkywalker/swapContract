@@ -16,6 +16,8 @@ async function main() {
   const amountOut = 2e6;
   const amountInMax = 3e6;
 
+  const deadline = Math.floor(Date.now() / 1000) + (60 * 10);
+
   const helpers = require("@nomicfoundation/hardhat-network-helpers");
   const USDTHolder = "0xf584f8728b874a6a5c7a8d4d387c9aae9172d621";
   await helpers.impersonateAccount(USDTHolder);
@@ -43,8 +45,7 @@ async function main() {
     amountInMax,
     [USDTAddress, DAIAddress],
     USDTHolder,
-    1660676406
-
+    deadline
   );
 
     const usdtBalAfter = await USDT.balanceOf(USDTHolder);
